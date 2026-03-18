@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Instituto Downlândia — Acolhimento e Inclusão</title>
+    <meta
+      name="description"
+      content="Instituto Downlândia — Acolhimento, apoio e inclusão para pessoas com síndrome de Down e suas famílias."
+    />
+    <meta property="og:title" content="Instituto Downlândia — Acolhimento e Inclusão" />
+    <meta
+      property="og:description"
+      content="Conheça o Instituto Downlândia e solicite acolhimento para você e sua família."
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind config compartilhado + CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind-config.js"></script>
+
+    <!-- Swiper.js CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@9/swiper-bundle.min.css"
+    />
+
+    <style>
+      /* Loading screen (somente na Home / index.html) */
+      #loading-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f6c343;
+      }
+
+      .loading-sweep {
+        position: absolute;
+        inset: 0;
+        width: 55%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.35) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: translateX(-120%);
+        animation: loadingSweep 900ms ease-out forwards;
+        pointer-events: none;
+      }
+
+      .loading-logo {
+        position: relative;
+        width: 180px;
+        max-width: 70vw;
+        height: auto;
+        opacity: 0;
+        animation: loadingLogoFade 650ms ease-out forwards;
+        animation-delay: 900ms;
+        pointer-events: none;
+      }
+
+      #loading-screen.loading-exit {
+        opacity: 0;
+        transition: opacity 450ms ease-out;
+        pointer-events: none;
+      }
+
+      @keyframes loadingSweep {
+        to {
+          transform: translateX(240%);
+        }
+      }
+
+      @keyframes loadingLogoFade {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #loading-screen {
+          transition: opacity 0ms linear;
+        }
+        .loading-sweep,
+        .loading-logo {
+          animation: none !important;
+        }
+        .loading-logo {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    class="font-body text-slate-900 bg-slate-50"
+    style="
+      background-image: url('assets/images/LOGO_DOWNLNDIA2026_08.png');
+      background-repeat: no-repeat;
+      background-position: right -80px top 80px;
+      background-size: 260px auto;
+      background-attachment: fixed;
+    "
+  >
+    <!-- INÍCIO: loading screen -->
+    <div
+      id="loading-screen"
+      aria-busy="true"
+      aria-live="polite"
+      role="status"
+    >
+      <div class="loading-sweep" aria-hidden="true"></div>
+      <img
+        class="loading-logo"
+        src="assets/images/LOGO_DOWNLNDIA2026_07.png"
+        alt="Logo do Instituto Downlândia"
+        width="180"
+        height="120"
+        decoding="async"
+      />
+    </div>
+    <!-- FIM: loading screen -->
+
+    <!-- INÍCIO: header global -->
+    <header
+      class="fixed inset-x-0 top-0 z-30 bg-white/90 backdrop-blur border-b border-slate-100"
+    >
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="flex items-center">
+            <img
+              src="assets/images/LOGO_DOWNLNDIA2026_06.png"
+              alt="Logo do Instituto Downlândia"
+              width="56"
+              height="40"
+              class="h-10 w-auto"
+              decoding="async"
+            />
+          </a>
+
+          <!-- Navegação desktop -->
+          <nav class="hidden md:flex items-center gap-8 text-sm">
+            <a
+              href="index.html"
+              class="text-slate-700 hover:text-brand-navy transition-colors"
+              >Início</a
+            >
+            <a
+              href="quem-somos.html"
+              class="text-slate-700 hover:text-brand-navy transition-colors"
+              >Quem somos</a
+            >
+            <a
+              href="acolhimento.html"
+              class="text-slate-700 hover:text-brand-navy transition-colors"
+              >Acolhimento</a
+            >
+            <a
+              href="eventos.html"
+              class="text-slate-700 hover:text-brand-navy transition-colors"
+              >Eventos</a
+            >
+            <a
+              href="contato.html"
+              class="text-slate-700 hover:text-brand-navy transition-colors"
+              >Contato</a
+            >
+          </nav>
+
+          <!-- CTA principal desktop -->
+          <div class="hidden md:flex">
+            <a
+              href="formulario-acolhimento.html"
+              class="inline-flex min-h-[44px] items-center justify-center px-5 py-3 rounded-full bg-brand-pink text-white text-sm font-semibold font-heading shadow-brand-offset-pink hover:-translate-y-0.5 active:translate-y-0 transition-transform focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 focus:ring-offset-white"
+            >
+              Preciso de acolhimento
+            </a>
+          </div>
+
+          <!-- Botão menu mobile -->
+          <button
+            id="mobile-menu-button"
+            class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 focus:ring-offset-white"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+          >
+            <svg
+              id="icon-menu"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5h14a1 1 0 010 2H3a1 1 0 110-2zm0 4h14a1 1 0 010 2H3a1 1 0 110-2zm0 4h14a1 1 0 010 2H3a1 1 0 110-2z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <svg
+              id="icon-close"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 hidden"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menu mobile -->
+      <div
+        id="mobile-menu"
+        class="md:hidden border-t border-slate-100 bg-white hidden"
+      >
+        <nav class="max-w-6xl mx-auto px-4 py-4 space-y-3 text-sm">
+          <a
+            href="index.html"
+            class="block text-slate-700 hover:text-brand-navy"
+            >Início</a
+          >
+          <a
+            href="quem-somos.html"
+            class="block text-slate-700 hover:text-brand-navy"
+            >Quem somos</a
+          >
+          <a
+            href="acolhimento.html"
+            class="block text-slate-700 hover:text-brand-navy"
+            >Acolhimento</a
+          >
+          <a
+            href="eventos.html"
+            class="block text-slate-700 hover:text-brand-navy"
+            >Eventos</a
+          >
+          <a
+            href="contato.html"
+            class="block text-slate-700 hover:text-brand-navy"
+            >Contato</a
+          >
+          <a
+            href="formulario-acolhimento.html"
+            class="mt-3 inline-flex w-full min-h-[44px] items-center justify-center px-5 py-3 rounded-full bg-brand-pink text-white text-sm font-semibold font-heading shadow-brand-offset-pink hover:-translate-y-0.5 active:translate-y-0 transition-transform focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 focus:ring-offset-white"
+          >
+            Preciso de acolhimento
+          </a>
+        </nav>
+      </div>
+    </header>
+    <!-- FIM: header global -->
+
+    <main class="pt-20 md:pt-24">
+      <!-- INÍCIO: seção hero home -->
+      <section id="hero" class="relative overflow-hidden">
+        <!-- Formas decorativas -->
+        <div
+          class="pointer-events-none absolute -top-32 -left-20 w-64 h-64 rounded-[3rem] bg-brand-blue/20 rotate-[-12deg]"
+        ></div>
+        <div
+          class="pointer-events-none absolute -bottom-40 -right-16 w-72 h-72 rounded-[3rem] bg-brand-pink/15 rotate-[18deg]"
+        ></div>
+
+        <div class="max-w-6xl mx-auto px-4 py-12 md:py-16">
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div class="relative z-10 space-y-6">
+              <span
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-xs font-medium text-brand-navy shadow-brand-offset-blue"
+              >
+                <span
+                  class="inline-block w-2 h-2 rounded-full bg-brand-green"
+                ></span>
+                Acolhimento para famílias de pessoas com síndrome de Down
+              </span>
+              <h1
+                class="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-brand-navy leading-tight"
+              >
+                Acolhimento real, para famílias reais.
+              </h1>
+              <p class="text-slate-700 text-base sm:text-lg leading-relaxed">
+                O Instituto Downlândia é um espaço de encontro, escuta e
+                pertencimento para pessoas com síndrome de Down e suas famílias.
+                Aqui, ninguém caminha sozinho.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <a
+                  href="formulario-acolhimento.html"
+                  class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-brand-pink text-white text-sm sm:text-base font-heading font-semibold shadow-brand-offset-pink hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                >
+                  Preciso de acolhimento
+                </a>
+                <a
+                  href="contato.html#apoie"
+                  class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-brand-navy text-sm sm:text-base font-heading font-semibold border border-brand-navy/20 shadow-brand-offset-blue hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                >
+                  Quero ajudar
+                </a>
+              </div>
+              <p class="text-xs text-slate-500">
+                Atendimento gratuito para famílias em qualquer fase da jornada.
+              </p>
+            </div>
+
+            <!-- Hero Swiper -->
+            <div class="relative z-10">
+              <div
+                class="swiper hero-swiper rounded-[2rem] overflow-hidden bg-slate-200 shadow-brand-offset-green"
+              >
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="relative">
+                      <img
+                        src="assets/images/cards/acolhimento.png?auto=format&fit=crop&w=1200&q=80"
+                        alt="Família abraçada em momento de acolhimento"
+                        class="w-full h-64 sm:h-80 md:h-96 object-cover"
+                      />
+                      <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-brand-navy/40 to-transparent"
+                      ></div>
+                      <div class="absolute inset-0 flex items-end">
+                        <div class="p-5 sm:p-7 text-white space-y-2">
+                          <h2
+                            class="font-heading text-xl sm:text-2xl font-semibold"
+                          >
+                            Acolhimento para toda a família
+                          </h2>
+                          <p class="text-sm sm:text-base text-slate-100">
+                            Encontros que fortalecem vínculos, trocam
+                            experiências e acolhem dúvidas sem julgamentos.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div class="relative">
+                      <img
+                        src="assets/images/cards/3o_encontro.jpg?auto=format&fit=crop&w=1200&q=80"
+                        alt="Crianças brincando em ambiente inclusivo"
+                        class="w-full h-64 sm:h-80 md:h-96 object-cover"
+                      />
+                      <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 via-brand-blue/40 to-transparent"
+                      ></div>
+                      <div class="absolute inset-0 flex items-end">
+                        <div class="p-5 sm:p-7 text-white space-y-2">
+                          <h2
+                            class="font-heading text-xl sm:text-2xl font-semibold"
+                          >
+                          Encontros para aprender e trocar experiências
+                          </h2>
+                          <p class="text-sm sm:text-base text-slate-100">
+                            Compartilhar histórias, aprender juntos e construir caminhos com mais leveza.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div class="relative">
+                      <img
+                        src="assets/images/cards/comunidade_acolhe.jpeg?auto=format&fit=crop&w=1200&q=80"
+                        alt="Grupo diverso sorrindo em roda de conversa"
+                        class="w-full h-64 sm:h-80 md:h-96 object-cover"
+                      />
+                      <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-green/80 via-brand-green/40 to-transparent"
+                      ></div>
+                      <div class="absolute inset-0 flex items-end">
+                        <div class="p-5 sm:p-7 text-white space-y-2">
+                          <h2
+                            class="font-heading text-xl sm:text-2xl font-semibold"
+                          >
+                            Promovendo conhecimento e inclusão
+                          </h2>
+                          <p class="text-sm sm:text-base text-slate-100">
+                            Famílias, profissionais e parceiros caminhando
+                            juntos por mais informação, inclusão e respeito.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="swiper-pagination !static mt-4"
+                  aria-label="Navegação dos slides de acolhimento"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- FIM: seção hero home -->
+
+      <!-- INÍCIO: seção sobre -->
+      <section
+        id="sobre"
+        class="bg-white border-y border-slate-100"
+        data-animate="fade"
+      >
+        <div class="max-w-6xl mx-auto px-4 py-12 md:py-16">
+          <div class="grid md:grid-cols-[1.4fr,1fr] gap-10 items-center">
+            <div class="space-y-4">
+              <h2
+                class="font-heading text-2xl sm:text-3xl font-semibold text-brand-navy"
+              >
+                Sobre o Instituto Downlândia
+              </h2>
+              <p class="text-slate-700 leading-relaxed">
+                O Instituto Downlândia nasce do encontro de famílias que
+                descobriram na partilha um jeito mais leve de viver a jornada da
+                síndrome de Down. Criamos um espaço seguro para acolher
+                sentimentos, fortalecer vínculos e construir caminhos de
+                autonomia e inclusão.
+              </p>
+              <p class="text-slate-700 leading-relaxed">
+                Aqui, cada história importa. Acreditamos em escuta atenta,
+                informação de qualidade e na potência de uma rede que cuida e
+                caminha junto, passo a passo.
+              </p>
+              <a
+                href="quem-somos.html"
+                class="inline-flex items-center text-sm font-heading text-brand-blue hover:text-brand-navy"
+              >
+                Saiba mais sobre quem somos
+                <span aria-hidden="true" class="ml-1">→</span>
+              </a>
+            </div>
+            <div class="relative">
+              <div
+                class="rounded-[1.75rem] overflow-hidden shadow-brand-offset-blue bg-slate-200"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
+                  alt="Famílias diversas reunidas em momento de convivência"
+                  class="w-full h-64 object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- FIM: seção sobre -->
+
+      <!-- INÍCIO: CTA acolhimento meio da página -->
+      <section
+        id="cta-acolhimento"
+        class="relative overflow-hidden bg-gradient-to-r from-brand-green/10 via-brand-blue/10 to-brand-pink/10"
+        data-animate="fade"
+      >
+        <div class="max-w-6xl mx-auto px-4 py-12 md:py-16">
+          <div
+            class="grid md:grid-cols-[2fr,1.2fr] gap-8 items-center relative z-10"
+          >
+            <div class="space-y-4">
+              <h2
+                class="font-heading text-2xl sm:text-3xl font-semibold text-brand-navy"
+              >
+                Precisa de acolhimento neste momento?
+              </h2>
+              <p class="text-slate-800 leading-relaxed">
+                Se você acabou de receber o diagnóstico, está se sentindo
+                sobrecarregado(a) ou quer se aproximar de outras famílias, nós
+                estamos aqui para caminhar ao seu lado.
+              </p>
+              <p class="text-slate-800 leading-relaxed">
+                Conte pra gente um pouco da sua história. Nosso time de
+                acolhedores entra em contato com todo cuidado e sigilo.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a
+                  href="formulario-acolhimento.html"
+                  class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-brand-green text-brand-black text-sm sm:text-base font-heading font-semibold shadow-brand-offset-green hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                >
+                  Quero apoio agora
+                </a>
+                <a
+                  href="acolhimento.html"
+                  class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-brand-navy text-sm sm:text-base font-heading font-semibold border border-brand-navy/20 shadow-brand-offset-blue"
+                >
+                  Entenda como funciona
+                </a>
+              </div>
+            </div>
+            <div class="space-y-3 text-sm text-slate-700">
+              <div
+                class="rounded-2xl bg-white/80 p-4 shadow-brand-offset-pink"
+              >
+                <p class="font-heading text-xs text-brand-pink mb-1">
+                  Como funciona o acolhimento?
+                </p>
+                <p>
+                  Você preenche um formulário simples, escolhe a melhor forma
+                  de contato e combinamos juntos o primeiro encontro.
+                </p>
+              </div>
+              <div
+                class="rounded-2xl bg-white/80 p-4 shadow-brand-offset-blue"
+              >
+                <p class="font-heading text-xs text-brand-blue mb-1">
+                  Quanto custa?
+                </p>
+                <p>
+                  O acolhimento é gratuito. Se quiser e puder, você pode apoiar
+                  o Instituto com doações.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- FIM: CTA acolhimento meio da página -->
+
+      <!-- INÍCIO: seção projetos -->
+      <section id="projetos" class="bg-white" data-animate="fade">
+        <div class="max-w-6xl mx-auto px-4 py-12 md:py-16">
+          <div class="flex flex-col gap-3 mb-8">
+            <h2
+              class="font-heading text-2xl sm:text-3xl font-semibold text-brand-navy"
+            >
+              Projetos que acolhem na prática
+            </h2>
+            <p class="text-slate-700 max-w-3xl">
+              Cuidar é presença e constância. Nossos projetos transformam
+              acolhimento em experiências reais: escuta, troca e informação de
+              qualidade para famílias que vivem a T21 no dia a dia.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <article
+              class="rounded-2xl bg-slate-50 overflow-hidden shadow-brand-offset-blue flex flex-col"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80"
+                alt="Criança em atividade lúdica com educadora"
+                class="h-40 w-full object-cover"
+              />
+              <div class="p-5 space-y-2 flex-1 flex flex-col">
+                <h3
+                  class="font-heading text-base sm:text-lg font-semibold text-brand-navy"
+                >
+                  Me Down Abraço
+                </h3>
+                <p class="text-sm text-slate-700 flex-1">
+                  Uma equipe de acolhedores capacitados e super preparados para
+                  realizar o acolhimento de familiares que recebem o diagnóstico
+                  da T21 em sua família.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="rounded-2xl bg-slate-50 overflow-hidden shadow-brand-offset-green flex flex-col"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1512427691650-1e0c2f9a81b3?auto=format&fit=crop&w=900&q=80"
+                alt="Grupo diverso em evento formativo"
+                class="h-40 w-full object-cover"
+              />
+              <div class="p-5 space-y-2 flex-1 flex flex-col">
+                <h3
+                  class="font-heading text-base sm:text-lg font-semibold text-brand-navy"
+                >
+                  PodDown
+                </h3>
+                <p class="text-sm text-slate-700 flex-1">
+                  Um Podcast com bate-papo com profissionais especialistas em T21,
+                  famílias que compartilham suas experiências e pessoas com T21
+                  que trazem para nós o seu olhar do mundo.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="rounded-2xl bg-slate-50 overflow-hidden shadow-brand-offset-pink flex flex-col"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80"
+                alt="Roda de conversa entre adultos em ambiente acolhedor"
+                class="h-40 w-full object-cover"
+              />
+              <div class="p-5 space-y-2 flex-1 flex flex-col">
+                <h3
+                  class="font-heading text-base sm:text-lg font-semibold text-brand-navy"
+                >
+                  Grupos de Whatsapp
+                </h3>
+                <p class="text-sm text-slate-700 flex-1">
+                  Comunidades para mães, pais, gestantes e familiares de pessoas
+                  com T21 que têm a finalidade de aproximar as pessoas e tornar
+                  real a troca de experiências.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="rounded-2xl bg-slate-50 overflow-hidden shadow-brand-offset-blue flex flex-col"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80"
+                alt="Roda de conversa entre adultos em ambiente acolhedor"
+                class="h-40 w-full object-cover"
+              />
+              <div class="p-5 space-y-2 flex-1 flex flex-col">
+                <h3
+                  class="font-heading text-base sm:text-lg font-semibold text-brand-navy"
+                >
+                  Encontros
+                </h3>
+                <p class="text-sm text-slate-700 flex-1">
+                  Encontros periódicos que proporcionam às famílias um local
+                  seguro e acolhedor para que possam se identificar e trocar
+                  experiências, assim como assistir a palestras cheias de
+                  informação de qualidade.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="rounded-2xl bg-slate-50 overflow-hidden shadow-brand-offset-green flex flex-col"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1512427691650-1e0c2f9a81b3?auto=format&fit=crop&w=900&q=80"
+                alt="Grupo diverso em evento formativo"
+                class="h-40 w-full object-cover"
+              />
+              <div class="p-5 space-y-2 flex-1 flex flex-col">
+                <h3
+                  class="font-heading text-base sm:text-lg font-semibold text-brand-navy"
+                >
+                  Palestras
+                </h3>
+                <p class="text-sm text-slate-700 flex-1">
+                  Palestras em empresas, escolas e qualquer outro local que deseja
+                  abrir suas portas para se aprofundar no mundo da Síndrome de
+                  Down.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <!-- FIM: seção projetos -->
+
+      <!-- INÍCIO: seção números -->
+      <section
+        id="numeros"
+        class="bg-brand-navy text-white"
+        data-animate="fade"
+      >
+        <div class="max-w-6xl mx-auto px-4 py-12 md:py-16">
+          <div class="flex flex-col gap-3 mb-8">
+            <h2
+              class="font-heading text-2xl sm:text-3xl font-semibold text-white"
+            >
+              Nossos números contam histórias
+            </h2>
+            <p class="text-slate-100 max-w-2xl">
+              Mais do que estatísticas, cada número representa famílias,
+              encontros e trajetórias de acolhimento que seguimos cuidando com
+              carinho.
+            </p>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div
+              class="rounded-2xl bg-white/5 border border-white/10 p-5 shadow-brand-offset-blue"
+            >
+              <div class="flex items-center gap-3 mb-2">
+                <div
+                  class="w-9 h-9 rounded-2xl bg-brand-blue flex items-center justify-center"
+                >
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-5 h-5 text-white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M19 8v6" />
+                    <path d="M22 11h-6" />
+                  </svg>
+                </div>
+                <p class="text-xs uppercase tracking-wide text-slate-200">
+                  Empresas parceiras
+                </p>
+              </div>
+              <p
+                class="text-3xl font-heading font-semibold mb-1 count-up"
+                data-target="30"
+              >
+                +0
+              </p>
+              <p class="text-xs text-slate-200">
+                Abraçam a nossa causa
+              </p>
+            </div>
+
+            <div
+              class="rounded-2xl bg-white/5 border border-white/10 p-5 shadow-brand-offset-green"
+            >
+              <div class="flex items-center gap-3 mb-2">
+                <div
+                  class="w-9 h-9 rounded-2xl bg-brand-green flex items-center justify-center"
+                >
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-5 h-5 text-brand-black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M21 11a4 4 0 0 0-4-4h-1" />
+                    <path d="M3 11a4 4 0 0 1 4-4h1" />
+                    <path d="M8 10l4 4" />
+                    <path d="M12 14l4-4" />
+                    <path d="M7 17l5-3 5 3" />
+                  </svg>
+                </div>
+                <p class="text-xs uppercase tracking-wide text-slate-200">
+                  Famílias acolhidas
+                </p>
+              </div>
+              <p
+                class="text-3xl font-heading font-semibold mb-1 count-up"
+                data-target="2000"
+              >
+                +0
+              </p>
+              <p class="text-xs text-slate-200">
+                Famílias que já passaram por nossos espaços de escuta e apoio.
+              </p>
+            </div>
+
+            <div
+              class="rounded-2xl bg-white/5 border border-white/10 p-5 shadow-brand-offset-pink"
+            >
+              <div class="flex items-center gap-3 mb-2">
+                <div
+                  class="w-9 h-9 rounded-2xl bg-brand-pink flex items-center justify-center"
+                >
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-5 h-5 text-white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="3" />
+                    <path d="M16 2v4" />
+                    <path d="M8 2v4" />
+                    <path d="M3 10h18" />
+                    <path d="M8 14h4" />
+                  </svg>
+                </div>
+                <p class="text-xs uppercase tracking-wide text-slate-200">
+                  Pessoas em eventos
+                </p>
+              </div>
+              <p
+                class="text-3xl font-heading font-semibold mb-1 count-up"
+                data-target="4000"
+              >
+                +0
+              </p>
+              <p class="text-xs text-slate-200">
+                Participações somadas em encontros, formações e rodas de
+                conversa.
+              </p>
+            </div>
+
+            <div
+              class="rounded-2xl bg-white/5 border border-white/10 p-5 shadow-brand-offset-blue"
+            >
+              <div class="flex items-center gap-3 mb-2">
+                <div
+                  class="w-9 h-9 rounded-2xl bg-brand-blue flex items-center justify-center"
+                >
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-5 h-5 text-white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="7" y="2" width="10" height="20" rx="2" />
+                    <path d="M11 18h2" />
+                    <path d="M9 6h6" />
+                  </svg>
+                </div>
+                <p class="text-xs uppercase tracking-wide text-slate-200">
+                  Seguidores no Instagram
+                </p>
+              </div>
+              <p
+                class="text-3xl font-heading font-semibold mb-1 count-up"
+                data-target="32500"
+              >
+                +0
+              </p>
+              <p class="text-xs text-slate-200">
+                Uma comunidade que acompanha, apoia e compartilha nossas
+                ações.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- FIM: seção números -->
+
+      <!-- INÍCIO: seção doação Pix -->
+      <section
+        id="apoie"
+        class="bg-white border-y border-slate-100"
+        data-animate="fade"
+      >
+        <div class="max-w-6xl mx-auto px-4 py-12 md:py-16">
+          <div class="grid lg:grid-cols-[1.4fr,1fr] gap-10 items-center">
+            <div class="space-y-4">
+              <h2
+                class="font-heading text-2xl sm:text-3xl font-semibold text-brand-navy"
+              >
+                Apoie o Instituto Downlândia
+              </h2>
+              <p class="text-slate-700 leading-relaxed">
+                Cada contribuição ajuda a manter encontros de acolhimento,
+                atividades com as famílias e ações de sensibilização pela
+                inclusão. Com seu apoio, seguimos cuidando de mais pessoas.
+              </p>
+              <p class="text-slate-700 leading-relaxed">
+                Você pode doar via Pix de forma rápida e segura. Qualquer valor
+                faz diferença.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <a
+                  href="contato.html#apoie"
+                  class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-brand-blue text-white text-sm sm:text-base font-heading font-semibold shadow-brand-offset-blue hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                >
+                  Quero ajudar
+                </a>
+                <a
+                  href="contato.html#parcerias"
+                  class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-brand-navy text-sm sm:text-base font-heading font-semibold border border-brand-navy/20 shadow-brand-offset-green"
+                >
+                  Tornar-me parceiro(a)
+                </a>
+              </div>
+            </div>
+            <div
+              class="rounded-2xl bg-slate-50 border border-dashed border-brand-blue/40 p-5 shadow-brand-offset-blue"
+            >
+              <p
+                class="font-heading text-sm text-brand-navy mb-3 text-center"
+              >
+                Doação via Pix
+              </p>
+              <div
+                class="aspect-square max-w-[180px] mx-auto mb-3 rounded-xl bg-white flex items-center justify-center border border-slate-200 overflow-hidden"
+              >
+                <img
+                  src="assets/images/qrcode/qrcode-pix.png"
+                  alt="QR Code do Pix para doação ao Instituto Downlândia"
+                  width="180"
+                  height="180"
+                  class="w-full h-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="space-y-2 text-xs text-slate-700">
+                <p class="font-medium text-center">
+                  Chave Pix (CNPJ):<br />
+                  <span class="font-heading text-brand-navy text-sm">
+                    51.836.705/0001-84<BR>
+                    <small>INSTITUTO DOWNLÂNDIA</small>
+                  </span>
+                  
+                </p>
+                <p class="text-center text-slate-500">
+                  Você também pode copiar a chave e colar direto no aplicativo
+                  do seu banco.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- FIM: seção doação Pix -->
+
+      <!-- INÍCIO: CTA acolhimento final -->
+      <section
+        class="bg-gradient-to-r from-brand-blue via-brand-pink to-brand-green"
+        data-animate="fade"
+      >
+        <div class="max-w-6xl mx-auto px-4 py-12 md:py-14">
+          <div
+            class="rounded-[2rem] bg-white/95 px-6 py-8 md:px-10 md:py-10 shadow-brand-offset-blue"
+          >
+            <div class="grid md:grid-cols-[2fr,1.1fr] gap-8 items-center">
+              <div class="space-y-3">
+                <h2
+                  class="font-heading text-2xl sm:text-3xl font-semibold text-brand-navy"
+                >
+                  Vamos dar o próximo passo juntos?
+                </h2>
+                <p class="text-slate-700 leading-relaxed">
+                  Se o seu coração sente que é hora de pedir ajuda, este é um
+                  bom lugar para começar. Preencha o formulário e conte um pouco
+                  da sua história. Estamos aqui para ouvir.
+                </p>
+              </div>
+              <div class="flex flex-col gap-3">
+                <a
+                  href="formulario-acolhimento.html"
+                  class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-brand-pink text-white text-sm sm:text-base font-heading font-semibold shadow-brand-offset-pink hover:-translate-y-0.5 active:translate-y-0 transition-transform text-center"
+                >
+                  Preciso de acolhimento
+                </a>
+                <a
+                  href="acolhimento.html"
+                  class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-brand-navy text-sm sm:text-base font-heading font-semibold border border-brand-navy/20 shadow-brand-offset-green text-center"
+                >
+                  Entender mais sobre o acolhimento
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- FIM: CTA acolhimento final -->
+    </main>
+
+    <!-- INÍCIO: footer global -->
+    <footer class="bg-brand-navy text-slate-100 mt-8">
+      <div class="max-w-6xl mx-auto px-4 py-10 md:py-12">
+        <div class="grid md:grid-cols-4 gap-8 text-sm">
+          <div class="md:col-span-2 space-y-3">
+            <img
+              src="assets/images/LOGO_DOWNLNDIA2026_10.png"
+              alt="Logo do Instituto Downlândia"
+              width="56"
+              height="40"
+              class="h-8 w-auto"
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="text-slate-200 text-sm">
+              Um espaço de acolhimento, escuta e construção coletiva para
+              pessoas com síndrome de Down e suas famílias.
+            </p>
+          </div>
+          <div>
+            <p class="font-heading text-xs uppercase tracking-wide mb-3">
+              Navegação
+            </p>
+            <ul class="space-y-2">
+              <li><a href="index.html" class="hover:underline">Início</a></li>
+              <li>
+                <a href="quem-somos.html" class="hover:underline"
+                  >Quem somos</a
+                >
+              </li>
+              <li>
+                <a href="acolhimento.html" class="hover:underline"
+                  >Acolhimento</a
+                >
+              </li>
+              <li>
+                <a href="eventos.html" class="hover:underline">Eventos</a>
+              </li>
+              <li>
+                <a href="contato.html" class="hover:underline">Contato</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-heading text-xs uppercase tracking-wide mb-3">
+              Contato
+            </p>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="mailto:contato@downlandia.com.br"
+                  class="inline-flex items-center gap-2 hover:underline"
+                >
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-4 h-4 text-slate-200"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4 4h16v16H4z" opacity=".2" />
+                    <path d="M4 8l8 5 8-5" />
+                    <path d="M4 6h16" />
+                  </svg>
+                  contato@downlandia.com.br
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://instagram.com/institutodownlandia"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex items-center gap-2 hover:underline"
+                >
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-4 h-4 text-slate-200"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M17.5 6.5h.01" />
+                  </svg>
+                  @institutodownlandia
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://br.linkedin.com/company/institutodownlandia"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex items-center gap-2 hover:underline"
+                >
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-4 h-4 text-slate-200"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4V9h4v2" />
+                    <rect x="2" y="9" width="4" height="12" />
+                    <circle cx="4" cy="4" r="2" />
+                  </svg>
+                  /institutodownlandia
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/@institutodownlandia"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex items-center gap-2 hover:underline"
+                >
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    class="w-4 h-4 text-slate-200"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M10 9l5 3-5 3V9z" />
+                    <path d="M21 7.5a3 3 0 0 0-2.1-2.1C17.1 5 12 5 12 5s-5.1 0-6.9.4A3 3 0 0 0 3 7.5 31 31 0 0 0 3 12a31 31 0 0 0 0 4.5 3 3 0 0 0 2.1 2.1C6.9 19 12 19 12 19s5.1 0 6.9-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 21 12a31 31 0 0 0 0-4.5z" />
+                  </svg>
+                  @institutodownlandia
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-2 text-[11px] text-slate-300">
+          <p>© <span id="year"></span> Instituto Downlândia. Todos os direitos reservados.</p>
+          <p>Construído com carinho para acolher pessoas e histórias.</p>
+        </div>
+      </div>
+    </footer>
+    <!-- FIM: footer global -->
+
+    <!-- Swiper.js JS -->
+    <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+
+    <!-- Scripts globais -->
+    <script>
+      // Ano do rodapé
+      document.getElementById('year').textContent =
+        new Date().getFullYear();
+
+      // Menu mobile
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconMenu = document.getElementById('icon-menu');
+      const iconClose = document.getElementById('icon-close');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+          const isOpen = !mobileMenu.classList.contains('hidden');
+          mobileMenu.classList.toggle('hidden');
+          mobileMenuButton.setAttribute('aria-expanded', String(!isOpen));
+          iconMenu.classList.toggle('hidden');
+          iconClose.classList.toggle('hidden');
+        });
+      }
+
+      // Swiper hero
+      const heroSwiper = new Swiper('.hero-swiper', {
+        loop: true,
+        autoplay: {
+          delay: 7000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      });
+
+      // Animações ao scroll (fade-in)
+      const animatedElements = document.querySelectorAll('[data-animate="fade"]');
+      if ('IntersectionObserver' in window && animatedElements.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.remove('opacity-0', 'translate-y-4');
+                entry.target.classList.add('opacity-100', 'translate-y-0');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        animatedElements.forEach((el) => {
+          el.classList.add(
+            'opacity-0',
+            'translate-y-4',
+            'transition',
+            'duration-700'
+          );
+          observer.observe(el);
+        });
+      }
+
+      // Count-up para números
+      const counters = document.querySelectorAll('.count-up');
+      if ('IntersectionObserver' in window && counters.length) {
+        const counterObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.getAttribute('data-target') || '0', 10);
+                let current = 0;
+                const duration = 1500;
+                const startTime = performance.now();
+
+                const step = (now) => {
+                  const progress = Math.min((now - startTime) / duration, 1);
+                  current = Math.floor(target * progress);
+                  el.textContent = `+${current.toLocaleString('pt-BR')}`;
+                  if (progress < 1) {
+                    requestAnimationFrame(step);
+                  }
+                };
+
+                requestAnimationFrame(step);
+                counterObserver.unobserve(el);
+              }
+            });
+          },
+          { threshold: 0.4 }
+        );
+
+        counters.forEach((counter) => {
+          counterObserver.observe(counter);
+        });
+      }
+
+      // Loading screen (remove após as animações do overlay)
+      const loadingScreen = document.getElementById('loading-screen');
+      if (loadingScreen) {
+        const prefersReducedMotion =
+          window.matchMedia &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+          loadingScreen.classList.add('loading-exit');
+          setTimeout(() => loadingScreen.remove(), 0);
+        } else {
+          window.addEventListener('load', () => {
+            // Sweep do fundo (900ms) + fade da logo (650ms) + pequena folga.
+            setTimeout(() => {
+              loadingScreen.classList.add('loading-exit');
+              setTimeout(() => loadingScreen.remove(), 500);
+            }, 1900);
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
+
