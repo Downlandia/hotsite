@@ -328,7 +328,7 @@
             <!-- Hero Swiper -->
             <div class="relative z-10">
               <div
-                class="swiper hero-swiper rounded-[2rem] overflow-hidden bg-slate-200 shadow-brand-offset-green"
+                class="swiper hero-swiper rounded-[2rem] overflow-hidden bg-slate-200 shadow-brand-offset-green relative z-10"
               >
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
@@ -336,7 +336,7 @@
                       <img
                         src="assets/images/cards/acolhimento.png?auto=format&fit=crop&w=1200&q=80"
                         alt="Família abraçada em momento de acolhimento"
-                        class="w-full h-64 sm:h-80 md:h-96 object-cover"
+                        class="w-full h-56 sm:h-80 md:h-96 object-cover"
                       />
                       <div
                         class="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-brand-navy/40 to-transparent"
@@ -362,7 +362,7 @@
                       <img
                         src="assets/images/cards/3o_encontro.jpg?auto=format&fit=crop&w=1200&q=80"
                         alt="Crianças brincando em ambiente inclusivo"
-                        class="w-full h-64 sm:h-80 md:h-96 object-cover"
+                        class="w-full h-56 sm:h-80 md:h-96 object-cover"
                       />
                       <div
                         class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 via-brand-blue/40 to-transparent"
@@ -387,7 +387,7 @@
                       <img
                         src="assets/images/cards/comunidade_acolhe.jpeg?auto=format&fit=crop&w=1200&q=80"
                         alt="Grupo diverso sorrindo em roda de conversa"
-                        class="w-full h-64 sm:h-80 md:h-96 object-cover"
+                        class="w-full h-56 sm:h-80 md:h-96 object-cover"
                       />
                       <div
                         class="absolute inset-0 bg-gradient-to-t from-brand-green/80 via-brand-green/40 to-transparent"
@@ -1161,6 +1161,12 @@
       // Swiper hero
       const heroSwiper = new Swiper('.hero-swiper', {
         loop: true,
+        // Ajuda o Swiper a recalcular altura no mobile e após carregamento de imagens
+        // (especialmente útil quando existe overlay/alterações de layout na página).
+        observer: true,
+        observeParents: true,
+        updateOnImagesReady: true,
+        autoHeight: true,
         autoplay: {
           delay: 7000,
           disableOnInteraction: false,
