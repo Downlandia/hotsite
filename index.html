@@ -1246,12 +1246,40 @@
         if (prefersReducedMotion) {
           loadingScreen.classList.add('loading-exit');
           setTimeout(() => loadingScreen.remove(), 0);
+          // Garante recalculo do Swiper após a remoção do overlay
+          try {
+            if (typeof heroSwiper !== 'undefined' && heroSwiper?.update) {
+              heroSwiper.update();
+            }
+            if (
+              typeof heroSwiper !== 'undefined' &&
+              heroSwiper?.updateAutoHeight
+            ) {
+              heroSwiper.updateAutoHeight();
+            }
+          } catch (e) {
+            // noop
+          }
         } else {
           window.addEventListener('load', () => {
             // Sweep do fundo (900ms) + fade da logo (650ms) + pequena folga.
             setTimeout(() => {
               loadingScreen.classList.add('loading-exit');
               setTimeout(() => loadingScreen.remove(), 500);
+              // Garante recalculo do Swiper após a remoção do overlay
+              try {
+                if (typeof heroSwiper !== 'undefined' && heroSwiper?.update) {
+                  heroSwiper.update();
+                }
+                if (
+                  typeof heroSwiper !== 'undefined' &&
+                  heroSwiper?.updateAutoHeight
+                ) {
+                  heroSwiper.updateAutoHeight();
+                }
+              } catch (e) {
+                // noop
+              }
             }, 1900);
           });
         }
